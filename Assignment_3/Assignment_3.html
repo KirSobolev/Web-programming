@@ -1,0 +1,46 @@
+<!DOCTYPE html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form action="/ex_script.php">
+        <h1>Registration form</h1>
+        <h2><u>Personal information</u></h2>
+            <label for="fname"><span>First name:</span></label>
+            <input type="text" id="fname" name="fname" placeholder="Thomas" required><br>
+
+            <label for="lname"><span>Last name:</span></label>
+            <input type="text" id="lname" name="lname" placeholder="Smith" required><br>
+
+            <label for="email"><span>E-mail:</span></label>
+            <input type="text" id="email" name="email" placeholder="thomas.smith@qwe.whynot" required><br>
+            <fieldset>
+                <legend>Sex</legend>
+                <input type="radio" name="sex" id="woman" value="woman"><label for="woman">Woman</label><br>
+                <input type="radio" name="sex" id="man" value="man"><label for="man">Man</label>
+            </fieldset>
+        <label for="birthdate"><span>Date of Birth:</span></label><input type="date" name="birth" id="birthdate" min="1900.01.01" max="2005.01.01" required>
+
+        <h2><u>Study Information</u></h2>
+        <label for="Programme"><span>Programme</span></label>
+        <select name="programme" id="Programme">
+            <label for="Machine learning"><option value="machine_learning">Machine Learning</option></label>
+            <label for="Nursery"><option value="nursery">Nursery</option></label>
+            <label for="Hospitality"><option value="hospitality">Hospitality</option></label>
+        </select>
+        <h3>Course selections spring 2022</h3>
+        <input type="checkbox" name="Course" id="Industrial project" value="industrial_project"><label for="Industrial project">Industrial project</label><br>
+        <input type="checkbox" name="Course" id="Web Programming" value="web_programming"><label for="Web Programming">Web Programming<br></label>
+        <input type="checkbox" name="Course" id="IOT" value="iot"><label for="IOT">IOT</label>
+        <label for="other"><h2><u>Other</u></h2></label>
+        <textarea name="other" rows="5" cols="30" placeholder="You can leave your feedback here" id="other"></textarea><br><br>
+
+        <label for="Submit"><input type="submit" value="Send" id="Submit"></label>
+        <label for="Reset"><input type="reset" name="" id="Reset"></label>
+    </form>
+</body>
+</html>
