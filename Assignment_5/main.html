@@ -1,0 +1,169 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="task1">
+        <h2>Task 1. Testing how to change the text and style of an element on the page</h2>
+        <p id="mickey">Mickey Mouse</p>
+        <button type="button" onclick="document.getElementById('mickey').innerHTML = 'Donald Duck'">Change name!</button>
+        <button type="button" onclick="document.getElementById('mickey').style.backgroundColor = 'red'">Change color!</button>
+        <button type="button" onclick="document.getElementById('mickey').innerHTML = 'Mickey Mouse'">Back to original name</button>
+        <button type="button" onclick="document.getElementById('mickey').style.backgroundColor = 'white'">Back to original color</button>
+        <button type="button" onclick="backToOriginal()">Back to original</button>
+        <script>
+            function backToOriginal() {
+                const mickey = document.getElementById('mickey');
+                mickey.style.backgroundColor = 'white'; 
+                mickey.textContent = 'Mickey Mouse';
+            }
+        </script>
+    </div>
+
+    <div class="task2">
+        <h2>Task 2. JavaScript variables, event handling adn functions</h2>
+        <p>A. Give the following values and count the sum.</p>
+        <p>x = <input id="x"></p>
+        <p>y = <input id="y"></p>
+        <button onclick="sumUp()">x+y</button>
+        <p id="result"></p>
+        <script>
+            function sumUp() {
+                let x = document.getElementById("x").value;
+                let y = document.getElementById("y").value;
+                document.getElementById("result").innerHTML = "The value of x + y is: " + (parseInt(x) + parseInt(y));
+            }
+        </script>
+
+        <p>B. Temperature in fahrenheits</p>
+        <input id="fahrenheits"><br>
+        <button onclick="transformToCelsius()">To Celsius</button>
+        <p id="result2b">123</p>
+        <script>
+            function transformToCelsius() {
+                let fahrenheits = document.getElementById('fahrenheits').value;
+                let result = (parseInt(fahrenheits) - 32) * (5 / 9);
+                document.getElementById('result2b').innerHTML = result.toFixed(2);
+            }
+        </script>
+
+        <p>C. Give the temperature</p>
+        <input id="temperature"><br>
+        <button onclick="weatherCheck()">Weather Check</button>
+        <p id="result2c"></p>
+        <script>
+            function weatherCheck() {
+                let temperature = parseInt(document.getElementById('temperature').value);
+                if (-40 <= temperature && temperature <= -20) {
+                document.getElementById('result2c').innerHTML = 'Pretty cold';
+                } else if (-19 <= temperature && temperature <= -5) {
+                document.getElementById('result2c').innerHTML = 'Average winter day';
+                } else if (-5 <= temperature && temperature <= 5) {
+                document.getElementById('result2c').innerHTML = 'Mild';
+                } else if (6 <= temperature && temperature <= 15) {
+                document.getElementById('result2c').innerHTML = 'Not really warm yet';
+                } else if (16 <= temperature && temperature <= 25) {
+                document.getElementById('result2c').innerHTML = 'Warm';
+                } else if (26 <= temperature && temperature <= 40) {
+                document.getElementById('result2c').innerHTML = 'Hot';
+                }
+            }    
+        </script>
+
+        <p>D. Dates</p>
+        <p>DATE 1</p>
+        <input type="date" id="date1">
+        <p>DATE 2</p>
+        <input type="date" id="date2"><br>
+        <button onclick="dateDiffer()">DIFFERENCE</button>
+        <p id="result2d"></p>
+        <script>
+            function dateDiffer() {
+                let date1 = new Date(document.getElementById('date1').value);
+                let date2 = new Date(document.getElementById('date2').value);
+                let differ = 0;
+                let dayDiffer = 0;
+                if (date1 < date2) {
+                    differ = date2 - date1;
+                } else {
+                    differ = date1 - date2;
+                }
+                dayDiffer = differ / (24*60*60*1000);
+                document.getElementById('result2d').innerHTML = dayDiffer + " days"
+            }
+        </script>
+    </div>
+
+    <div class="task3">
+        <h2>Task 3. JS objects and arrays</h2>
+        <h4>No loops</h4>
+        <p id="id"></p>
+        <p id="firstname"></p>
+        <p id="lastname"></p>
+        <p id="age"></p>
+        <h4>Using loop</h4>
+        <p id="loop"></p>
+        <script>
+            let student = {id: "123456", firstname: "John", lastname: "Doe", age: 48};
+            document.getElementById('id').innerHTML ="id= " + student.id;
+            document.getElementById('firstname').innerHTML ="firstname= " + student.firstname;
+            document.getElementById('lastname').innerHTML ="lastname= " + student.lastname;
+            document.getElementById('age').innerHTML ="age= " + student.age;
+            
+            let text = "";
+            for (let el in student) {
+                text += el + "= " + student[el] + "<br/>";
+            }
+            document.getElementById('loop').innerHTML = text;
+        </script>
+    </div>
+
+    <div class="task4">
+        <h2>Task 4. Implement web application for counting the post costs according to following table</h2>
+        <p>Choose type of parcel:</p>
+        <input type="radio" id="letter" name="type" value="letter">
+        <label for="letter">Letter</label><br>
+        <input type="radio" id="package" name="type" value="package">
+        <label for="package">Package</label><br>
+        <br>
+        <p>Weight of the parcel: <input id="weight"></p>
+        <button onclick="countCost()">Count cost</button>
+        <p id="cost"></p>
+        <script>
+            function countCost() {
+                let parcelType = document.querySelector('input[name="type"]:checked').value;
+                let weight = parseInt(document.getElementById("weight").value);
+                const baseLetter = 0.50;
+                const basePackage = 2;
+                const mediumLetter = 0.04;
+                const mediumPackage = 0.08;
+                const bigLetter = 0.07;
+                const bigPackage = 0.14;
+                result = 0;
+                if (weight > 500 && parcelType == 'letter') {
+                    result += Math.ceil((weight - 500) / 100) * bigLetter;
+                    weight = 500;
+                } else if (weight > 500 && parcelType == 'package') {
+                    result += Math.ceil((weight - 500) / 100) * bigPackage;
+                    weight = 500;
+                }
+                if (weight > 200 && parcelType == 'letter') {
+                    result += Math.ceil((weight - 200) / 100) * mediumLetter;
+                } else if (weight > 200 && parcelType == 'package') {
+                    result += Math.ceil((weight - 200) / 100) * mediumPackage;
+                }
+                if ( parcelType == 'letter') {
+                    result += baseLetter;
+                } else if ( parcelType == 'package') {
+                    result += basePackage;
+                }
+                
+                document.getElementById('cost').innerHTML = "Total cost is: " + result;
+            }
+        </script>
+    </div>
+</body>
+</html>
