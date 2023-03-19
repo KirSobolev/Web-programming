@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignnment 6. Arrays loops and sort</title>
+    <style>
+        table, tr, td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercise 1.</h1>
+    <h2>Products</h1>
+    <p id="ex_1"></p>
+    <script>
+        const products = ["milk", "coffee", "Juice", "Lemonade", "beer", "sour milk"];
+        let text = "";
+        for (let x in products) {
+            text += products[x] + "<br>";
+        };
+        document.getElementById("ex_1").innerHTML = text
+    </script>
+
+    <h1>Exercise 2.</h1>
+    <h2>Products</h2>
+
+    <table id="ex_2"></table>
+    <br>
+    <button id="sort" onclick="sort_products()">SORT</button>
+    <script>
+        let text_2 = "";
+        for (i = 0; i < products.length; i++) {
+            text_2 += "<tr>" + "<td>" + products[i] + "</td>" + "</tr>";
+        };
+        document.getElementById('ex_2').innerHTML = text_2;
+
+        function sort_products() {
+            products.sort();
+            let text_2b = "";
+            for (i = 0; i < products.length; i++) {
+                text_2b += "<tr>" + "<td>" + products[i] + "</td>" + "</tr>";
+            };
+            document.getElementById('ex_2').innerHTML = text_2b;
+        }
+    </script>
+
+    <h1>Exercise 3.</h1>
+    <h2>Products</h2>
+    <table id="ex_3"></table>
+    <br>
+    <button onclick="sort_inc()">SORT INC</button>
+    <button onclick="sort_dec()">SORT DEC</button>
+    <script>
+        const products_3 = [
+            {name: "milk", price: 1.10},
+            {name: "coffee" , price: 3.50},
+            {name: "juice" , price: 0.75},
+            {name: "lemonade" , price: 0.90},
+            {name: "beer" , price: 2.70},
+            {name: "sour milk" , price: 0.80}
+            ];
+            
+            function print_table(){
+            let text_3 = ""
+            for (i=0; i< products_3.length; i++) {
+                product = products_3[i];
+                text_3 += "<tr>";
+            for (key in product) {
+                text_3 += `<td>${product[key]}</td>`;
+            }
+            text_3 += "</tr>"
+            }
+            document.getElementById("ex_3").innerHTML = text_3;
+            };
+
+            print_table();
+
+            function sort_inc() {
+                products_3.sort(function(a,b){return a.price - b.price});
+                print_table();
+                };
+
+            function sort_dec() {
+                products_3.sort(function(a,b){return b.price - a.price});
+                print_table();
+            };
+
+    </script>
+
+
+</body>
+</html>
